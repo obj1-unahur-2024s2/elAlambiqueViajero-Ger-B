@@ -1,9 +1,35 @@
 import alambique.*
+import recuerdos.*
+
 
 describe "group of tests" {
-
-  test "test 1" {
-    assert.equals(100, 50+50)
+  test "Puede viajar" {
+      luke.visitarLugar(paris, alambique)
+      luke.visitarLugar(buenosAires, alambique)
+      luke.visitarLugar(bagdad, alambique)
+      luke.visitarLugar(vegas, alambique)
+      assert.that(alambique.esRapido())
+      assert.equals(buenosAires, vegas.paisConmemorado())
+      assert.equals(0, alambique.combustible())
+      assert.equals([paris, buenosAires, bagdad, vegas], luke.lugaresVisitados())
   }
-
+  test "No puede hacer el ultimo viaje" {
+      luke.visitarLugar(paris, alambique)
+      luke.visitarLugar(buenosAires, alambique)
+      luke.visitarLugar(bagdad, alambique)
+      luke.visitarLugar(vegas, alambique)
+      assert.that(alambique.esRapido())
+      assert.equals(buenosAires, vegas.paisConmemorado())
+      assert.equals(0, alambique.combustible())
+      assert.equals([paris, buenosAires, bagdad, vegas], luke.lugaresVisitados())
+  }
+  test "Recuerdo del ultimo lugar si visita paris" {
+      luke.visitarLugar(paris, alambique)
+      assert.equals('Torre Eiffel', luke.recuerdoDelUltimoLugar())
+  }
+  test "Cantidad de lugares visitados" {
+      luke.visitarLugar(paris, alambique)
+      luke.visitarLugar(paris, alambique)
+      assert.equals(2, luke.cuantosLugaresVisito())
+  }
 }
