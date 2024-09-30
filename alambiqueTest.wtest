@@ -5,29 +5,29 @@ import paises.*
 
 describe "group of tests" {
   test "Puede viajar" {
-      luke.visitarLugar(paris, alambique)
-      luke.visitarLugar(buenosAires, alambique)
-      assert.that(alambique.esRapido())
-      assert.equals(50, alambique.combustible())
-      assert.equals([paris, buenosAires], luke.lugaresVisitados())
+        luke.visitarLugar(paris, alambique)
+        luke.visitarLugar(buenosAires, alambique)
+        assert.that(alambique.esRapido())
+        assert.equals(50, alambique.combustible())
+        assert.equals([paris, buenosAires], luke.lugaresVisitados())
   }
   test "No puede hacer el ultimo viaje" {
-      luke.visitarLugar(paris, alambique)
-      luke.visitarLugar(buenosAires, alambique)
-      luke.visitarLugar(bagdad, alambique)
-      luke.visitarLugar(vegas, alambique)
-      assert.notThat(alambique.esRapido())
-      assert.equals(buenosAires, vegas.paisConmemorado())
-      assert.equals(25, alambique.combustible())
-      assert.equals([paris, buenosAires, bagdad], luke.lugaresVisitados())
+        luke.visitarLugar(paris, alambique)
+        luke.visitarLugar(buenosAires, alambique)
+        luke.visitarLugar(bagdad, alambique)
+        luke.visitarLugar(vegas, alambique)
+        assert.notThat(alambique.esRapido())
+        assert.equals(buenosAires, vegas.paisConmemorado())
+        assert.equals(25, alambique.combustible())
+        assert.equals([paris, buenosAires, bagdad], luke.lugaresVisitados())
   }
   test "Recuerdo del ultimo lugar si visita paris" {
-      luke.visitarLugar(paris, alambique)
-      assert.equals('Torre Eiffel', luke.recuerdoDelUltimoLugar())
+        luke.visitarLugar(paris, alambique)
+        assert.equals('Torre Eiffel', luke.recuerdoDelUltimoLugar())
   }
   test "Cantidad de lugares visitados" {
-      luke.visitarLugar(paris, alambique)
-      luke.visitarLugar(paris, alambique)
-      assert.equals(2, luke.cuantosLugaresVisito())
+        luke.visitarLugar(paris, alambique)
+        luke.visitarLugar(paris, alambique)
+        assert.equals(2, luke.cuantosLugaresVisito())
   }
 }
