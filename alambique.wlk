@@ -32,7 +32,7 @@ object alambique {
 
     method viajar(destino) {
         combustible = 0.max(combustible - 25)
-        if(cantViajes > 2) 
+        if(cantViajes == 2) 
             esRapido = not esRapido
         cantViajes = cantViajes + 1
     } 

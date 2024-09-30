@@ -7,22 +7,19 @@ describe "group of tests" {
   test "Puede viajar" {
       luke.visitarLugar(paris, alambique)
       luke.visitarLugar(buenosAires, alambique)
-      luke.visitarLugar(bagdad, alambique)
-      luke.visitarLugar(vegas, alambique)
       assert.that(alambique.esRapido())
-      assert.equals(buenosAires, vegas.paisConmemorado())
-      assert.equals(0, alambique.combustible())
-      assert.equals([paris, buenosAires, bagdad, vegas], luke.lugaresVisitados())
+      assert.equals(50, alambique.combustible())
+      assert.equals([paris, buenosAires], luke.lugaresVisitados())
   }
   test "No puede hacer el ultimo viaje" {
       luke.visitarLugar(paris, alambique)
       luke.visitarLugar(buenosAires, alambique)
       luke.visitarLugar(bagdad, alambique)
       luke.visitarLugar(vegas, alambique)
-      assert.that(alambique.esRapido())
+      assert.notThat(alambique.esRapido())
       assert.equals(buenosAires, vegas.paisConmemorado())
-      assert.equals(0, alambique.combustible())
-      assert.equals([paris, buenosAires, bagdad, vegas], luke.lugaresVisitados())
+      assert.equals(25, alambique.combustible())
+      assert.equals([paris, buenosAires, bagdad], luke.lugaresVisitados())
   }
   test "Recuerdo del ultimo lugar si visita paris" {
       luke.visitarLugar(paris, alambique)
