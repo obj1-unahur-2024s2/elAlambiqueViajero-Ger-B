@@ -42,37 +42,42 @@ object superChatarra {
     var municiones = 40
     var combustible = 100
     method combustible() = combustible
+    method municiones() = municiones
 
     var property esRapido = true 
 
     method puedeViajar(destino) = destino.condicionDeViaje() and municiones != 0
 
     method viajar() {
-        municiones = 0.max(municiones - 15)
+        combustible = 0.max(combustible - municiones) 
         //A menos munciones tiene, mas lijero, gasta menos combustible
-        combustible = 0.max(combustible - municiones * 2) 
+        municiones = 0.max(municiones - 15)
     }
 
 }
 object antiguallaBlindada {
-    var gansters = 7
+    var mafiosos = 7
     var combustible = 100
     var property esRapido = true 
+    method combustible() = combustible 
+    method mafiosos() = mafiosos 
 
-    method puedeViajar(destino) = destino.condicionDeViaje() and gansters > 5
+    method puedeViajar(destino) = destino.condicionDeViaje() and mafiosos > 5
 
     method viajar() {
-        gansters = 0.max(gansters - 1)
+        mafiosos = 0.max(mafiosos - 1)
         combustible = 0.max(combustible - 25)
-        if(gansters == 6)
+        if(mafiosos == 6)
             esRapido = not esRapido
     }
 }
 object superConvertible {
     var property descapotado = true
-    var property esRapido = true
+    const esRapido = not descapotado
     var combustible = 100
-    
+    method combustible() = combustible
+    method esRapido() = esRapido
+
     method puedeViajar(destino) = destino.condicionDeViaje()
 
     method viajar() {

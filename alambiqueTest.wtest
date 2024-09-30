@@ -30,4 +30,29 @@ describe "group of tests" {
         luke.visitarLugar(paris, alambique)
         assert.equals(2, luke.cuantosLugaresVisito())
   }
+  test "Luke viaja en el Super Chatarra" {
+      luke.visitarLugar(buenosAires, superChatarra)
+      assert.equals(25, superChatarra.municiones())
+      assert.equals(60, superChatarra.combustible())
+      assert.equals([buenosAires], luke.lugaresVisitados())
+  }
+  test "Luke viaja en la Antigualla Blindada" {
+      luke.visitarLugar(buenosAires, antiguallaBlindada)
+      assert.equals(6, antiguallaBlindada.mafiosos())
+      assert.equals(75, antiguallaBlindada.combustible())
+      assert.equals([buenosAires], luke.lugaresVisitados())
+  }
+  test "Luke viaja en el Super Convertible sin el techo colocado" {
+      luke.visitarLugar(bagdad, superConvertible)
+      assert.notThat(superConvertible.esRapido())
+      assert.equals(65, superConvertible.combustible())
+      assert.equals([bagdad], luke.lugaresVisitados())
+  }
+  test "Luke viaja en el Super Convertible con el techo colocado" {
+      superConvertible.descapotado(false)
+      luke.visitarLugar(buenosAires, superConvertible)
+      assert.that(superConvertible.esRapido())
+      assert.equals(85, superConvertible.combustible())
+      assert.equals([buenosAires], luke.lugaresVisitados())
+  }
 }
