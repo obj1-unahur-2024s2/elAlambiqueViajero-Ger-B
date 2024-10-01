@@ -32,8 +32,8 @@ describe "group of tests" {
   }
   test "Luke viaja en el Super Chatarra" {
       luke.visitarLugar(buenosAires, superChatarra)
-      assert.equals(25, superChatarra.municiones())
-      assert.equals(60, superChatarra.combustible())
+      assert.equals(20, superChatarra.municiones())
+      assert.equals(30, superChatarra.combustible())
       assert.equals([buenosAires], luke.lugaresVisitados())
   }
   test "Luke viaja en la Antigualla Blindada" {

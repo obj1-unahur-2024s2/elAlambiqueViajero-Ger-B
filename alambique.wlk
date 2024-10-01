@@ -28,7 +28,7 @@ object alambique {
     var cantViajes = 0
     method combustible() = combustible
     
-    method puedeViajar(destino) = destino.condicionDeViaje()
+    method puedeViajar(destino) = destino.condicionDeViaje(self)
 
     method viajar() {
         combustible = 0.max(combustible - 25)
@@ -40,18 +40,18 @@ object alambique {
 
 object superChatarra {
     var municiones = 40
-    var combustible = 100
+    var combustible = 50
     method combustible() = combustible
     method municiones() = municiones
 
     var property esRapido = true 
 
-    method puedeViajar(destino) = destino.condicionDeViaje() and municiones != 0
+    method puedeViajar(destino) = destino.condicionDeViaje(self) and municiones != 0
 
     method viajar() {
-        combustible = 0.max(combustible - municiones) 
+        combustible = 0.max(combustible - municiones/2) 
         //A menos munciones tiene, mas lijero, gasta menos combustible
-        municiones = 0.max(municiones - 15)
+        municiones = 0.max(municiones - 20)
     }
 
 }
@@ -62,7 +62,7 @@ object antiguallaBlindada {
     method combustible() = combustible 
     method mafiosos() = mafiosos 
 
-    method puedeViajar(destino) = destino.condicionDeViaje() and mafiosos > 5
+    method puedeViajar(destino) = destino.condicionDeViaje(self) and mafiosos > 5
 
     method viajar() {
         mafiosos = 0.max(mafiosos - 1)
@@ -73,12 +73,11 @@ object antiguallaBlindada {
 }
 object superConvertible {
     var property descapotado = true
-    const esRapido = not descapotado
     var combustible = 100
     method combustible() = combustible
-    method esRapido() = esRapido
+    method esRapido() = not descapotado
 
-    method puedeViajar(destino) = destino.condicionDeViaje()
+    method puedeViajar(destino) = destino.condicionDeViaje(self)
 
     method viajar() {
         if (descapotado)

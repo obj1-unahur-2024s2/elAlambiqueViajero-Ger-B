@@ -1,13 +1,13 @@
 import alambique.*
 object paris {
     method recuerdo() = 'Torre Eiffel'
-    method condicionDeViaje() = alambique.combustible() > 50 
+    method condicionDeViaje(auto) = auto.combustible() > 50 
 }
 
 object buenosAires {
     var property presidente = 'Milei'
     method recuerdo() = if(presidente == 'Milei') 'Mate sin yerba' else 'Mate con yerba'
-    method condicionDeViaje() = alambique.esRapido()
+    method condicionDeViaje(auto) = auto.esRapido()
 }
 
 object bagdad {
@@ -17,13 +17,13 @@ object bagdad {
         epoca = anio 
     } 
     method recuerdo() = recuerdos.find({r=>r.anio(epoca)})
-    method condicionDeViaje() = true
+    method condicionDeViaje(auto) = true
 }
 
 object vegas {
     var property paisConmemorado = buenosAires
     method recuerdo() = paisConmemorado.recuerdo()  
-    method condicionDeViaje() = paisConmemorado.condicionDeViaje() 
+    method condicionDeViaje(auto) = paisConmemorado.condicionDeViaje(auto) 
 }
 
 object petroleoCrudo {

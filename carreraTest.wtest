@@ -1,0 +1,29 @@
+import alambique.*
+import paises.*
+import carrera.*
+
+describe "Test para la parte dos del enunciado" {
+	method testConfig(){
+		inscripcion.inscribir(alambique)
+		inscripcion.inscribir(superChatarra)
+		inscripcion.inscribir(superConvertible)
+		inscripcion.inscribir(antiguallaBlindada)
+	}
+	test "El Alambique se puede anotar pero el Super Convertible no" {
+		self.testConfig()
+		// assert.that(inscripcion.aceptados().contains(alambique))
+		// assert.that(inscripcion.rechazados().contains(superConvertible))
+		assert.equals(buenosAires, carrera.locacion())
+		assert.equals([alambique, superChatarra, antiguallaBlindada], inscripcion.aceptados())
+		assert.equals([superConvertible], inscripcion.rechazados())
+	}
+	test "Resinscripcion de los vehiculos" {
+		self.testConfig()
+		inscripcion.replanificacion(paris)
+		inscripcion.reInscribir()
+		assert.equals([alambique, antiguallaBlindada, superConvertible], inscripcion.aceptados())
+		assert.equals([superChatarra], inscripcion.rechazados())
+		assert.equals(paris, carrera.locacion())
+
+	}
+}
